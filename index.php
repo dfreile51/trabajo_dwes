@@ -1,3 +1,6 @@
+<?php
+    require_once('php/funciones.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +16,52 @@
     <?php
         require_once('layout/header.php');
     ?>
-        
-    <div class="container">
+
+    <div class="container py-3 my-3 bg-white">
+<!--         <div class="row"> -->
+            <?php
+                $discos = obtenerDiscos();
+                if(is_array($discos) && count($discos)>0) {
+                    foreach($discos as $disco) {
+                        echo "<table>";
+                            echo "<tr>";
+                                echo "<th><img src='".substr($disco['imagen'],3)."' alt='imagen' /></th>";
+                            echo "</tr>";
+
+                            echo "<tr>";
+                                echo "<th>Nombre del disco: {$disco['nombre']}</th>";
+                            echo "</tr>";
+
+                            echo "<tr>";
+                                echo "<th>Nombre artista/grupo: {$disco['artista']}</th>";
+                            echo "</tr>";
+
+                            echo "<tr>";
+                                echo "<th>Formato: {$disco['formato']}</th>";
+                            echo "</tr>";
+
+                            echo "<tr>";
+                                echo "<th>País: {$disco['pais']}</th>";
+                            echo "</tr>";
+
+                            echo "<tr>";
+                                echo "<th>Fecha publicación: {$disco['fecha']}</th>";
+                            echo "</tr>";
+
+                            echo "<tr>";
+                                echo "<th>Género: {$disco['genero']}</th>";
+                            echo "</tr>";
+                        echo "</table>";
+                    }
+                } else {
+                    echo "<p>No hay ningún disco</p>";
+                }
+                
+                /* foreach($discos as $valor) {
+                    echo "<img src='".substr($valor,3)."' alt='imagen' />";
+                } */
+            ?>
+<!--         </div> -->
         
     </div>
 
