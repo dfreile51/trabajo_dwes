@@ -21,7 +21,7 @@
         require_once('../layout/headerResto.php');
     ?>
 
-    <div class="container my-3">
+    <div class="container my-3 bg-white">
         <div class="row">
             <div class="col-12">
                 <?php

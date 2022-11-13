@@ -51,7 +51,7 @@
         $discos = false;
         try {
             $con = mysqli_connect(HOST, USER, PASS, BD);
-            $sql = "SELECT id_disco, nombre, artista, formato, pais, fecha, genero, imagen FROM discos"; // Recojo tambien el id_disco, para luego poder usarlo a la hora de editar o eliminar un registro
+            $sql = "SELECT * FROM discos"; // Recojo tambien el id_disco, para luego poder usarlo a la hora de editar o eliminar un registro
             $result = mysqli_query($con, $sql);
             mysqli_close($con);
             if(mysqli_num_rows($result)>0) {
@@ -72,7 +72,7 @@
         $discos = false;
         try {
             $con = mysqli_connect(HOST, USER, PASS, BD);
-            $sql = "SELECT id_disco, nombre, artista, pais, fecha, genero FROM discos WHERE id_disco = $id";
+            $sql = "SELECT * FROM discos WHERE id_disco = $id";
             $result = mysqli_query($con, $sql);
             mysqli_close($con);
             if(mysqli_num_rows($result)>0) {

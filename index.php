@@ -54,7 +54,7 @@
                                         echo "<td>Género: {$disco['genero']}</td>";
                                     echo "</tr>";
                                 echo "</table>";
-                                echo "</div>";
+                            echo "</div>";
                         }
                     } else {
                         echo "<p>No hay ningún disco</p>";
