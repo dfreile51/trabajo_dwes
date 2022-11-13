@@ -17,20 +17,45 @@
 
         $rutaCompleta = $ruta."/".$caratula;
 
-        move_uploaded_file($archivo, $rutaCompleta);
+        if(!file_exists($rutaCompleta)) {
+            move_uploaded_file($archivo, $rutaCompleta);
+        }
 
+        if(insertar($nombreDisco, $nombreArtista, $formato, $pais, $fecha, $genero, $rutaCompleta)) {
+            header('Location: agregar.php');
+        } else {
+            header('Location: ../index.php');
+        }
+        
         /* insertar($nombreDisco, $nombreArtista, $formato, $pais, $fecha, $genero, $caratula);
 
         header('Location: agregar.php'); */
 
+    } else if(isset($_REQUEST['actualizar'])) {
+        $id = $_REQUEST['id'];
+        $nombreDisco = $_REQUEST['nombreDisco'];
+        $nombreArtista = $_REQUEST['nombreArtista'];
+        $formato = $_REQUEST['formato'];
+        $pais = $_REQUEST['pais'];
+        $fecha = $_REQUEST['fecha'];
+        $genero = $_REQUEST['genero'];
+
+        $caratula = $_FILES['caratula']['name'];
+        $archivo = $_FILES['caratula']['tmp_name'];
+        $ruta = "../imgs";
+
+        $rutaCompleta = $ruta."/".$caratula;
+
+        if(!file_exists($rutaCompleta)) {
+            move_uploaded_file($archivo, $rutaCompleta);
+        }
+
+        if(actualizarDatos($id, $nombreDisco, $nombreArtista, $formato, $pais, $fecha, $genero, $rutaCompleta)) {
+            header('Location: editar.php');
+        } else {
+            header('Location: ../index.php');
+        }
     } else {
         header('Location: ../index.php');
     }
-
-    if(insertar($nombreDisco, $nombreArtista, $formato, $pais, $fecha, $genero, $rutaCompleta)) {
-        header('Location: agregar.php');
-    } else {
-        header('Location: ../index.php');
-    }
-
 ?>

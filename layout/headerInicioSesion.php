@@ -35,10 +35,10 @@
                     <a class="nav-link" href="agregar.php">Agregar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Eliminar</a>
+                    <a class="nav-link" href="eliminar.php">Eliminar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Modificar</a>
+                    <a class="nav-link" href="editar.php">Modificar</a>
                 </li>
             </ul>
 
