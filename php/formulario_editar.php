@@ -1,4 +1,5 @@
 <?php
+    session_start();
     if(!isset($_REQUEST['editar'])) {
         header('Location: ../index.php');
     }

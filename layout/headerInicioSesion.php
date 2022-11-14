@@ -31,15 +31,6 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="../index.php">Inventario</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="agregar.php">Agregar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="eliminar.php">Eliminar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="editar.php">Modificar</a>
-                </li>
             </ul>
 
             <!-- Boton de inicio de sesion no lo muestro porque estoy en el formulario de incio de sesion -->

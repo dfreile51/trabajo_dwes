@@ -31,20 +31,33 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="../index.php">Inventario</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="agregar.php">Agregar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="eliminar.php">Eliminar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="editar.php">Modificar</a>
-                </li>
+                <?php
+                    if($_SESSION['permisos'] == "admin") {
+                        echo "
+                        <li class='nav-item'>
+                            <a class='nav-link' href='agregar.php'>Agregar</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='eliminar.php'>Eliminar</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='editar.php'>Modificar</a>
+                        </li>";
+                    }
+                ?>
             </ul>
 
             <!-- Boton de inicio de sesion -->
             <div class="d-flex">
-                <a class="d-md-inline-block btn btn-outline-warning m-auto" tabindex="-1" role="button" href="iniciar_sesion.php">Iniciar Sesión</a>
+                <?php
+                    if($_SESSION['usuario'] != "invitado") {
+                        echo "<p class='text-white my-auto me-2'>Usuario, {$_SESSION['usuario']}</p>
+                            <a class='d-md-inline-block btn btn-outline-warning m-auto' tabindex='-1' role='button' href='cerrar_sesion.php'>Cerrar sesión</a>";
+                    } else {
+                        echo "<p class='text-white my-auto me-2'>Usuario, {$_SESSION['usuario']}</p>
+                            <a class='d-md-inline-block btn btn-outline-warning m-auto' tabindex='-1' role='button' href='iniciar_sesion.php'>Iniciar Sesión</a>";
+                    }
+                ?>
             </div>
            
         </div>

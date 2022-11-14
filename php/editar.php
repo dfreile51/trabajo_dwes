@@ -1,5 +1,5 @@
 <?php
-    require_once('funciones.php');
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +20,7 @@
     <div class="container  my-3 bg-white">
         <div class="row">
             <?php
+                require_once('funciones.php');
                 $discos = obtenerDiscosConId();
                 if(is_array($discos) && count($discos)>0) {
                     foreach($discos as $disco) {

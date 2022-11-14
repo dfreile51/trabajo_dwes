@@ -1,4 +1,11 @@
 <?php
+    session_start();
+    
+    if(!isset($_SESSION['usuario']) && !isset($_SESSION['permisos'])) {
+        $_SESSION['usuario'] = "invitado";
+        $_SESSION['permisos'] = "invitado";
+    }
+
     require_once('php/funciones.php');
 ?>
 <!DOCTYPE html>

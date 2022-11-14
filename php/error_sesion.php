@@ -1,14 +1,7 @@
 <?php
-    if(!isset($_REQUEST['eliminar'])) {
-        header('Location: ../index.php');
-    }
-
-    require_once('funciones.php');
-?>
-<!DOCTYPE html>
-<?php
     session_start();
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,17 +20,9 @@
     <div class="container my-3 bg-white">
         <div class="row">
             <div class="col-12 my-3">
-                <?php
-                    $id = $_REQUEST['id'];
-
-                    if(eliminarDatos($id)) {
-                        echo "<h2 class='text-center'>Eliminado correctamente</h2>";
-                    } else {
-                        echo "<h2 class='text-center'>Error al eliminar</h2>";
-                    }
-                    echo "<br/>";
-                    echo "<p class='text-center'><a class='btn btn-outline-warning m-auto' href='../index.php'>Volver a inicio</a></p>";
-                ?>
+                <h2 class='text-center'>Usuario o contraseña incorrectos, por favor vuelva a intentarlo</h2>
+                <br/>
+                <p class='text-center'><a class='btn btn-outline-warning m-auto' href='iniciar_sesion.php'>Volver a intertarlo</a></p>
             </div>
         </div>
         

@@ -105,6 +105,8 @@
         return $actualizado;
     }
 
+    // FUNCION PARA ELIMINAR LOS DATOS DE UNA FILA
+
     function eliminarDatos($id) {
         $eliminado = false;
         try {
@@ -119,5 +121,47 @@
             $eliminado = false;
         }
         return $eliminado;
+    }
+
+    // FUNCION PARA VALIDAR SI EXISTE EL USUARIO EN LA BD
+
+    function validarUsuario($user, $pass) {
+        $sesion = false;
+        try {
+            $con = mysqli_connect(HOST, USER, PASS, BD);
+            $sql = "SELECT * FROM usuarios WHERE username='$user' AND pass='$pass'";
+            $result = mysqli_query($con, $sql);
+            mysqli_close($con);
+            if(mysqli_num_rows($result)>0) {
+                $sesion = array();
+                while($reg = mysqli_fetch_assoc($result)) {
+                    $sesion[] = $reg;
+                }
+            }
+        } catch (mysqli_sql_exception $e) {
+            $sesion = false;
+        }
+        return $sesion;
+    }
+
+    // FUNCION PARA VALIDAR SI EL USUARIO ES ADMIN
+
+    function validarUsuarioAdmin($user, $pass) {
+        $sesion = false;
+        try {
+            $con = mysqli_connect(HOST, USER, PASS, BD);
+            $sql = "SELECT * FROM usuarios WHERE username='$user' AND pass='$pass' AND permisos='admin'";
+            $result = mysqli_query($con, $sql);
+            mysqli_close($con);
+            if(mysqli_num_rows($result)>0) {
+                $sesion = array();
+                while($reg = mysqli_fetch_assoc($result)) {
+                    $sesion[] = $reg;
+                }
+            }
+        } catch (mysqli_sql_exception $e) {
+            $sesion = false;
+        }
+        return $sesion;
     }
 ?>
