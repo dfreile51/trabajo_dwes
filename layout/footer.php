@@ -19,11 +19,9 @@
             <div class="col-6">
                 <h5>Contacto</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item text-muted">Home</li>
-                    <li class="nav-item text-muted">Features</li>
-                    <li class="nav-item text-muted">Pricing</li>
-                    <li class="nav-item text-muted">FAQs</li>
-                    <li class="nav-item text-muted">About</li>
+                    <li class="nav-item text-muted">C/ La Inventada, 7, 3ºA</li>
+                    <li class="nav-item text-muted">Email: discomovida@gmail.com</li>
+                    <li class="nav-item text-muted">Teléfono: 333666999</li>
                 </ul>
             </div>
         </div>

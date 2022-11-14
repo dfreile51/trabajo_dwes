@@ -19,7 +19,6 @@
 
     <div class="container my-3 bg-white">
         <div class="row">
-            
                 <?php
                     $discos = obtenerDiscosSinId();
                     if(is_array($discos) && count($discos)>0) {

@@ -23,16 +23,17 @@
 
     <div class="container my-3 bg-white">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 my-3">
                 <?php
                     $id = $_REQUEST['id'];
+
                     if(eliminarDatos($id)) {
                         echo "<h2 class='text-center'>Eliminado correctamente</h2>";
-                        echo "<a class='btn btn-outline-warning m-auto' href='../index.php'>Volver a inicio</a>";
                     } else {
                         echo "<h2 class='text-center'>Error al eliminar</h2>";
-                        echo "<a class='btn btn-outline-warning m-auto' href='../index.php'>Volver a inicio</a>";
                     }
+                    echo "<br/>";
+                    echo "<p class='text-center'><a class='btn btn-outline-warning m-auto' href='../index.php'>Volver a inicio</a></p>";
                 ?>
             </div>
         </div>
