@@ -29,13 +29,13 @@
                 if(is_array($discos) && count($discos)>0) {
                     foreach($discos as $disco) {
                         echo "<div class='col-sm-12 col-md-6 col-lg-3 my-3'>";
-                            echo "<table>";
+                            echo "<table class='d-flex justify-content-center py-2 border border-2 rounded-2'>";
                                 echo "<tr>";
                                     echo "<th style='text-align: center;'><img src='".$disco['imagen']."' alt='imagen' /></th>";
                                 echo "</tr>";
 
                                 echo "<tr>";
-                                    echo "<td>Nombre del disco: {$disco['nombre']}</td>";
+                                    echo "<td class='pt-2'>Nombre del disco: {$disco['nombre']}</td>";
                                 echo "</tr>";
 
                                 echo "<tr>";
@@ -59,7 +59,7 @@
                                 echo "</tr>";
 
                                 echo "<tr>";
-                                    echo "<td class='text-center'>";
+                                    echo "<td class='pt-2 text-center'>";
                                         echo "<form action='formulario_editar.php' method='post'>";
                                             echo "<input type='hidden' id='id' name='id' value='{$disco['id_disco']}' />";
                                             echo "<input type='submit' class='btn btn-success' value='Editar' id='editar' name='editar' />";

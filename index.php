@@ -25,20 +25,20 @@
     ?>
 
     <div class="container my-3 bg-white">
-        <div class="row">
+        <div class="row ">
                 <?php
                     require_once('php/funciones.php');
                     $discos = obtenerDiscosSinId();
                     if(is_array($discos) && count($discos)>0) {
                         foreach($discos as $disco) {
                             echo "<div class='col-sm-12 col-md-6 col-lg-3 my-3'>";
-                                echo "<table>";
+                                echo "<table class='d-flex justify-content-center py-2 border border-2 rounded-2'>";
                                     echo "<tr>";
                                         echo "<th style='text-align: center;'><img src='".substr($disco['imagen'],3)."' alt='imagen' /></th>";
                                     echo "</tr>";
 
                                     echo "<tr>";
-                                        echo "<td>Nombre del disco: {$disco['nombre']}</td>";
+                                        echo "<td class='pt-2'>Nombre del disco: {$disco['nombre']}</td>";
                                     echo "</tr>";
 
                                     echo "<tr>";
@@ -66,10 +66,6 @@
                     } else {
                         echo "<p>No hay ningún disco</p>";
                     }
-                    
-                    /* foreach($discos as $valor) {
-                        echo "<img src='".substr($valor,3)."' alt='imagen' />";
-                    } */
                 ?>
         </div>
     </div>

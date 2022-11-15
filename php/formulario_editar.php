@@ -49,8 +49,8 @@
                             <div class="mb-3">
                                 <label for="formato" class="form-label">Tipo de formato: </label>
                                 <select class="form-select" id="formato" name="formato">
-                                    <option value="cd">CD</option>
-                                    <option value="vinilo">Vinilo</option>
+                                    <option>CD</option>
+                                    <option>Vinilo</option>
                                 </select>
                             </div>
                             <div class="mb-3">
