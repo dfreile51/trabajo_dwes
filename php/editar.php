@@ -70,7 +70,9 @@
                         echo "</div>";
                     }
                 } else {
-                    echo "<p>No hay ningún disco</p>";
+                    echo "<div class='col-12 py-2'>";
+                        echo "<h3 class='text-center'>No hay discos</h3>";
+                    echo "</div>";
                 }
             ?>
         </div>

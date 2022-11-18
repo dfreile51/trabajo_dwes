@@ -6,6 +6,9 @@
         $_SESSION['permisos'] = "invitado";
     }
 
+    if(isset($_REQUEST['ver'])) {
+        $artista = $_REQUEST['artista'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,12 +26,37 @@
     <?php
         include('layout/header.php');
     ?>
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="d-flex justify-content-center card-header"><h3 class="card-title">Filtros</h3></div>
+                    <div class="card-body">
+                        <form action="#" method="post">
+                            <label for="artista" class="form-label">Nombre del artista</label>
+                            <input type="text" name="artista" id="artista" class="form-control" value="<?php if(isset($_REQUEST['ver'])) { echo $artista; } ?>" />
+                            <input type="submit" class="btn btn-warning" value="Ver" id="ver" name="ver" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container my-3 bg-white">
         <div class="row ">
                 <?php
                     require_once('php/funciones.php');
-                    $discos = obtenerDiscosSinId();
+                    if(!isset($_REQUEST['ver'])) {
+                        $discos = obtenerDiscosSinId();
+                    } else {
+                        if($artista == '') {
+                            $discos = obtenerDiscosSinId();
+                        } else {
+                            $discos = obtenerDiscosPorArtista($artista);
+                        }
+                    }
+                    
                     if(is_array($discos) && count($discos)>0) {
                         foreach($discos as $disco) {
                             echo "<div class='col-sm-12 col-md-6 col-lg-3 my-3'>";
@@ -64,7 +92,9 @@
                             echo "</div>";
                         }
                     } else {
-                        echo "<p>No hay ningún disco</p>";
+                        echo "<div class='col-12 py-2'>";
+                            echo "<h3 class='text-center'>No hay discos</h3>";
+                        echo "</div>";
                     }
                 ?>
         </div>

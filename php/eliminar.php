@@ -21,7 +21,7 @@
         include('../layout/headerResto.php');
     ?>
 
-    <div class="container  my-3 bg-white">
+    <div class="container my-3 bg-white">
         <div class="row">
             <?php
                 require_once('funciones.php');
@@ -70,12 +70,10 @@
                         echo "</div>";
                     }
                 } else {
-                    echo "<p>No hay ningún disco</p>";
+                    echo "<div class='col-12 py-2'>";
+                        echo "<h3 class='text-center'>No hay discos</h3>";
+                    echo "</div>";
                 }
-                
-                /* foreach($discos as $valor) {
-                    echo "<img src='".substr($valor,3)."' alt='imagen' />";
-                } */
             ?>
 
         </div>

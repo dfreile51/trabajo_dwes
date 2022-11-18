@@ -87,6 +87,27 @@
         return $discos;
     }
 
+    // FUNCION PARA OBTENER DISCO POR EL NOMBRE DEL ARTISTA
+
+    function obtenerDiscosPorArtista($artista) {
+        $discos = false;
+        try {
+            $con = mysqli_connect(HOST, USER, PASS, BD);
+            $sql = "SELECT nombre, artista, formato, pais, fecha, genero, imagen FROM discos WHERE artista LIKE '%$artista%'";
+            $result = mysqli_query($con, $sql);
+            mysqli_close($con);
+            if(mysqli_num_rows($result)>0) {
+                $discos = array();
+                while($reg = mysqli_fetch_assoc($result)) {
+                    $discos[] = $reg;
+                }
+            }
+        } catch (mysqli_sql_exception $e) {
+            $discos = false;
+        }
+        return $discos;
+    }
+
     // FUNCION PARA ACTUALIZAR LOS DATOS DE UNA FILA
 
     function actualizarDatos($id, $nombreDisco, $artista, $formato, $pais, $fecha, $genero, $imagen) {
