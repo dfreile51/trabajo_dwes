@@ -6,31 +6,13 @@
     define("PASS", "discomovida");
     define("BD", "discomovida");
 
-    // FUNCION PARA INSERTAR
-
-    function insertar($nombreDisco, $artista, $formato, $pais, $fecha, $genero, $imagen) {
-        $insertado = false;
-        try {
-            $con = mysqli_connect(HOST, USER, PASS, BD);
-            $sql = "INSERT INTO discos(nombre, artista, formato, pais, fecha, genero, imagen) values ('".$nombreDisco."', '".$artista."', '".$formato."', '".$pais."', '".$fecha."', '".$genero."', '".$imagen."')";
-            $result = mysqli_query($con, $sql);
-            if($result && mysqli_affected_rows($con)==1) {
-                $insertado = true;
-            }
-            mysqli_close($con);
-        } catch (mysqli_sql_exception $e) {
-            $insertado = false;
-        }
-        return $insertado;
-    }
-
     // FUNCION PARA OBTENER TODOS LOS DISCOS SIN EL ID
 
     function obtenerDiscosSinId() {
         $discos = false;
         try {
             $con = mysqli_connect(HOST, USER, PASS, BD);
-            $sql = "SELECT nombre, artista, formato, pais, fecha, genero, imagen FROM discos";
+            $sql = "SELECT nombre, artista, formato, pais, fecha, genero, precio, imagen FROM discos";
             $result = mysqli_query($con, $sql);
             mysqli_close($con);
             if(mysqli_num_rows($result)>0) {
@@ -87,13 +69,53 @@
         return $discos;
     }
 
-    // FUNCION PARA OBTENER DISCO POR EL NOMBRE DEL ARTISTA
+    // FUNCION PARA OBTENER DISCO SEGÚN LOS FILTROS
 
-    function obtenerDiscosPorArtista($artista) {
+    function obtenerDiscosFiltros($artista, $nombreDisco, $orden, $genero) {
         $discos = false;
         try {
             $con = mysqli_connect(HOST, USER, PASS, BD);
-            $sql = "SELECT nombre, artista, formato, pais, fecha, genero, imagen FROM discos WHERE artista LIKE '%$artista%'";
+            if($artista == '' && $nombreDisco == '' && $orden == 'Nada' && $genero == 'Todos') {
+                $sql = "SELECT nombre, artista, formato, pais, fecha, genero, precio, imagen FROM discos";
+            } else {
+                $sql = "SELECT nombre, artista, formato, pais, fecha, genero, precio, imagen FROM discos ";
+
+                if($artista != '' || $artista == '') {
+                    $sql .= "WHERE artista LIKE '%".$artista."%' ";
+                } 
+
+                if($nombreDisco != '' || $nombreDisco == '') {
+                    $sql .= "AND nombre LIKE '%".$nombreDisco."%' ";
+                }
+
+                if($genero != 'Todos') {
+                    $sql .= "AND genero = '".$genero."' ";
+                }
+
+                if($orden == 'Orden ascendente por artista') {
+                    $sql .= "ORDER BY artista ASC";
+                }
+
+                if($orden == 'Orden descendente por artista') {
+                    $sql .= "ORDER BY artista DESC";
+                }
+
+                if($orden == 'Orden ascendente por nombre') {
+                    $sql .= "ORDER BY nombre ASC";
+                }
+
+                if($orden == 'Orden descendente por nombre') {
+                    $sql .= "ORDER BY nombre DESC";
+                }
+
+                if($orden == 'Orden ascendente por genero') {
+                    $sql .= "ORDER BY genero ASC";
+                }
+
+                if($orden == 'Orden descendente por genero') {
+                    $sql .= "ORDER BY genero DESC";
+                }
+            }
             $result = mysqli_query($con, $sql);
             mysqli_close($con);
             if(mysqli_num_rows($result)>0) {
@@ -108,13 +130,52 @@
         return $discos;
     }
 
+    // FUNCION PARA OBTENER LOS GENEROS
+
+    function obtenerGeneros() {
+        $generos = false;
+        try {
+            $con = mysqli_connect(HOST, USER, PASS, BD);
+            $sql = "SELECT DISTINCT genero FROM discos";
+            $result = mysqli_query($con, $sql);
+            mysqli_close($con);
+            if(mysqli_num_rows($result)>0) {
+                $generos = array();
+                while($reg = mysqli_fetch_row($result)) {
+                    $generos[] = $reg[0];
+                }
+            }
+        } catch(mysqli_sql_exception $e) {
+            $generos = false;
+        }
+        return $generos;
+    }
+
+    // FUNCION PARA INSERTAR
+
+    function insertar($nombreDisco, $artista, $formato, $pais, $fecha, $genero, $precio, $imagen) {
+        $insertado = false;
+        try {
+            $con = mysqli_connect(HOST, USER, PASS, BD);
+            $sql = "INSERT INTO discos(nombre, artista, formato, pais, fecha, genero, precio, imagen) values ('".$nombreDisco."', '".$artista."', '".$formato."', '".$pais."', '".$fecha."', '".$genero."', '".$precio."', '".$imagen."')";
+            $result = mysqli_query($con, $sql);
+            if($result && mysqli_affected_rows($con)==1) {
+                $insertado = true;
+            }
+            mysqli_close($con);
+        } catch (mysqli_sql_exception $e) {
+            $insertado = false;
+        }
+        return $insertado;
+    }
+
     // FUNCION PARA ACTUALIZAR LOS DATOS DE UNA FILA
 
-    function actualizarDatos($id, $nombreDisco, $artista, $formato, $pais, $fecha, $genero, $imagen) {
+    function actualizarDatos($id, $nombreDisco, $artista, $formato, $pais, $fecha, $genero, $precio, $imagen) {
         $actualizado = false;
         try {
             $con = mysqli_connect(HOST, USER, PASS, BD);
-            $sql = "UPDATE discos SET nombre='$nombreDisco', artista='$artista', formato='$formato', pais='$pais', fecha='$fecha', genero='$genero', imagen='$imagen' WHERE id_disco=$id";
+            $sql = "UPDATE discos SET nombre='$nombreDisco', artista='$artista', formato='$formato', pais='$pais', fecha='$fecha', genero='$genero', precio='$precio', imagen='$imagen' WHERE id_disco=$id";
             $result = mysqli_query($con, $sql);
             if($result && mysqli_affected_rows($con)==1) {
                 $actualizado = true;

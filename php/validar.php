@@ -10,6 +10,7 @@
         $pais = $_REQUEST['pais'];
         $fecha = $_REQUEST['fecha'];
         $genero = $_REQUEST['genero'];
+        $precio = $_REQUEST['precio'];
 
         $caratula = $_FILES['caratula']['name'];
         $archivo = $_FILES['caratula']['tmp_name'];
@@ -21,7 +22,7 @@
             move_uploaded_file($archivo, $rutaCompleta);
         }
 
-        if(insertar($nombreDisco, $nombreArtista, $formato, $pais, $fecha, $genero, $rutaCompleta)) {
+        if(insertar($nombreDisco, $nombreArtista, $formato, $pais, $fecha, $genero, $precio, $rutaCompleta)) {
             header('Location: agregar.php');
         } else {
             header('Location: ../index.php');
@@ -39,6 +40,7 @@
         $pais = $_REQUEST['pais'];
         $fecha = $_REQUEST['fecha'];
         $genero = $_REQUEST['genero'];
+        $precio = $_REQUEST['precio'];
 
         $caratula = $_FILES['caratula']['name'];
         $archivo = $_FILES['caratula']['tmp_name'];
@@ -50,7 +52,7 @@
             move_uploaded_file($archivo, $rutaCompleta);
         }
 
-        if(actualizarDatos($id, $nombreDisco, $nombreArtista, $formato, $pais, $fecha, $genero, $rutaCompleta)) {
+        if(actualizarDatos($id, $nombreDisco, $nombreArtista, $formato, $pais, $fecha, $genero, $precio, $rutaCompleta)) {
             header('Location: editar.php');
         } else {
             header('Location: ../index.php');
